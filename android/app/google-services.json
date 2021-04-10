@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "800010744541",
+    "project_id": "recrup-69de0",
+    "storage_bucket": "recrup-69de0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800010744541:android:23179ba439d66d90dbe134",
+        "android_client_info": {
+          "package_name": "com.cronpay.cronpay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "800010744541-5kfu22lqefb3oqdu8c6etv15dn3bqlsp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cronpay.cronpay",
+            "certificate_hash": "46980f8e713c9e0a9ad8db60f86b3b2c0d7149af"
+          }
+        },
+        {
+          "client_id": "800010744541-n9k2oboq118lnm1immv0bjo50qerpn1t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBS89HK7qIUSnHmXK3ZewYlMCIOO7Lg0Fk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "800010744541-7c5go40mgafivcuvlrlkdfbvrigmmfnc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,46 @@
+import 'package:cron_pay/src/auth/screens/all_done.dart';
+import 'package:cron_pay/src/auth/screens/change_password.dart';
+import 'package:cron_pay/src/auth/screens/create_pin.dart';
+import 'package:cron_pay/src/auth/screens/new_password.dart';
+import 'package:cron_pay/src/auth/screens/reset_password.dart';
+import 'package:cron_pay/src/auth/screens/signin.dart';
+import 'package:cron_pay/src/auth/screens/signup.dart';
+import 'package:cron_pay/src/auth/screens/verification.dart';
+import 'package:cron_pay/src/beneficiaries/screens/benefiiciaries.dart';
+import 'package:cron_pay/src/buttomnav/buttom_nav_bar.dart';
+import 'package:cron_pay/src/events/screens/all_events.dart';
+import 'package:cron_pay/src/events/screens/event_created.dart';
+import 'package:cron_pay/src/events/screens/new_event.dart';
+import 'package:cron_pay/src/home/screens/home.dart';
+import 'package:cron_pay/src/payment/screens/add_payment_method.dart';
+import 'package:cron_pay/src/payment/screens/create_mandate.dart';
+import 'package:cron_pay/src/payment/screens/payment_methods.dart';
+import 'package:cron_pay/src/payment/widgets/signature_pad.dart';
+import 'package:cron_pay/src/profile/screens/edit_profile.dart';
+import 'package:cron_pay/src/transactions/screens/transactions.dart';
+import 'package:cron_pay/src/splash/screens/onboarding.dart';
+
+class Routes {
+  static const home = Home.routeName;
+  static const onBoarding = Onboarding.routeName;
+  static const signUp = SignUp.routeName;
+  static const signIn = SignIn.routeName;
+  static const verification = Verification.routeName;
+  static const createPin = CreatePIN.routeName;
+  static const confirmPin = CreatePIN.routeName;
+  static const allDone = AllDone.routeName;
+  static const eventCreated = EventCreated.routeName;
+  static const navigationHost = BottomNavBar.routeName;
+  static const newEvent = NewEvent.routeName;
+  static const signaturePad = SignaturePad.routeName;
+  static const allEvent = AllEvents.routeName;
+  static const beneficiaries = Beneficiaries.routeName;
+  static const addPayment = AddPaymentMethod.routeName;
+  static const paymentMethods = PaymentMethods.routeName;
+  static const editProfile = EditProfile.routeName;
+  static const transactions = Transactions.routeName;
+  static const resetPassword = ResetPassword.routeName;
+  static const newPassword = NewPassword.routeName;
+  static const changePassword = ChangePassword.routeName;
+  static const createMandate = CreateMandate.routeName;
+}

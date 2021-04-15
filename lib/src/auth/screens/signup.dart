@@ -21,7 +21,6 @@ import 'package:flutter_boxicons/flutter_boxicons.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_screenutil/screenutil.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class SignUp extends StatefulWidget {
   static const String routeName = '/signup';
@@ -37,23 +36,23 @@ class _SignUpState extends State<SignUp> {
   User user = User();
   final _formKey = GlobalKey<FormState>();
   var isButtonDisabled = true;
-
-  GoogleSignIn _googleSignIn = GoogleSignIn(
-    scopes: <String>[
-      'email',
-    ],
-  );
+  //
+  // GoogleSignIn _googleSignIn = GoogleSignIn(
+  //   scopes: <String>[
+  //     'email',
+  //   ],
+  // );
 
   @override
   void initState() {
     super.initState();
-    _googleSignIn.signOut();
+    // _googleSignIn.signOut();
     _authBloc = BlocProvider.of<AuthBloc>(context);
     _bankBloc = BlocProvider.of<BankBloc>(context);
     _profileBloc = BlocProvider.of<ProfileBloc>(context);
-    _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
-      _authBloc.add(SignUpWithGoogleEvent(account));
-    });
+    // _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
+    //   _authBloc.add(SignUpWithGoogleEvent(account));
+    // });
   }
 
   @override
@@ -211,22 +210,25 @@ class _SignUpState extends State<SignUp> {
                       gotoNextScreen();
                     });
                   }
-                  if (state is SigUpWithGoogleSuccessful) {
-                    Navigator.pop(context);
-                      showOverlay(context, "Creating User Account");
-                      _authBloc.add(LoginWithGoogleEvent(state.user));
-                  } else if (state is SigningUp) {
+                  // if (state is SigUpWithGoogleSuccessful) {
+                  //   Navigator.pop(context);
+                  //     showOverlay(context, "Creating User Account");
+                  //     _authBloc.add(LoginWithGoogleEvent(state.user));
+                  // }
+                  else if (state is SigningUp) {
                     showOverlay(context, "Verifying Email");
                   } else if (state is LoginSuccessful) {
                     Navigator.pop(context);
                     showOverlay(context, "Signing you in");
                     _profileBloc.add(GetUserProfile());
                     _bankBloc.add(GetBanksEvent());
-                  } else if (state is RequestError) {
-                    _googleSignIn.signOut();
-                    Navigator.pop(context);
-                    AppSnackBar().show(message: state.errorResponse.message);
-                  } else if (state is RequestingOTP) {
+                  }
+                  // else if (state is RequestError) {
+                  //   _googleSignIn.signOut();
+                  //   Navigator.pop(context);
+                  //   AppSnackBar().show(message: state.errorResponse.message);
+                  // }
+                  else if (state is RequestingOTP) {
                     showOverlay(context, "Signing you up");
                   }
                 },
@@ -363,7 +365,7 @@ class _SignUpState extends State<SignUp> {
 
   void _handleGoogleSignIn() async {
     try {
-      _googleSignIn.signIn();
+      // _googleSignIn.signIn();
     } catch (error) {
       print("fghfgh" + error.toString());
     }

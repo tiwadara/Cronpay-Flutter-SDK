@@ -19,7 +19,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_boxicons/flutter_boxicons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_screenutil/screenutil.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class SignIn extends StatefulWidget {
   static const String routeName = '/signIn';
@@ -35,21 +34,21 @@ class _SignInState extends State<SignIn> {
   ProfileBloc _profileBloc;
   BankBloc _bankBloc;
   User user = User();
-  GoogleSignIn _googleSignIn = GoogleSignIn(
-    scopes: <String>[
-      'email',
-    ],
-  );
+  // GoogleSignIn _googleSignIn = GoogleSignIn(
+  //   scopes: <String>[
+  //     'email',
+  //   ],
+  // );
 
   @override
   void initState() {
     _authBloc = BlocProvider.of<AuthBloc>(context);
     _bankBloc = BlocProvider.of<BankBloc>(context);
     _profileBloc = BlocProvider.of<ProfileBloc>(context);
-    _googleSignIn.signOut();
-    _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
-      _authBloc.add(LoginWithGoogleEvent(account));
-    });
+    // _googleSignIn.signOut();
+    // _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
+    //   _authBloc.add(LoginWithGoogleEvent(account));
+    // });
 
     super.initState();
   }
@@ -173,7 +172,7 @@ class _SignInState extends State<SignIn> {
                     _profileBloc.add(GetUserProfile());
                     _bankBloc.add(GetBanksEvent());
                   } else if (state is RequestError) {
-                    _googleSignIn.signOut();
+                    // _googleSignIn.signOut();
                     Navigator.pop(context);
                     AppSnackBar().show(message: state.errorResponse.message);
                   } else if (state is SigningIn) {
@@ -303,7 +302,7 @@ class _SignInState extends State<SignIn> {
 
   void _handleGoogleSignIn() async {
     try {
-      _googleSignIn.signIn();
+      // _googleSignIn.signIn();
     } catch (error) {
       print("fghfgh" + error.toString());
     }

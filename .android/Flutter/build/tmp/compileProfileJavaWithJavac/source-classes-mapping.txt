@@ -1,0 +1,4 @@
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+com/cronpay/cronpay_module/BuildConfig.java
+ com.cronpay.cronpay_module.BuildConfig

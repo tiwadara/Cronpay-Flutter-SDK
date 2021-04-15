@@ -19,7 +19,6 @@ import 'package:flutter_boxicons/flutter_boxicons.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_native_image/flutter_native_image.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:image_cropper/image_cropper.dart';
 
 class EditProfile extends StatefulWidget {
   static const String routeName = '/editProfile';
@@ -435,37 +434,5 @@ class _EditProfileState extends State<EditProfile> {
     //   File file = File(result.files.single.path);
     //   _cropImage(file);
     // }
-  }
-
-  Future<Null> _cropImage(File file) async {
-    File croppedFile = await ImageCropper.cropImage(
-        sourcePath: file.path,
-        cropStyle: CropStyle.circle,
-        aspectRatioPresets: [
-          CropAspectRatioPreset.square,
-        ],
-        androidUiSettings: AndroidUiSettings(
-            toolbarTitle: 'Crop Profile Picture',
-            toolbarColor: AppColors.primaryDark,
-            toolbarWidgetColor: AppColors.white,
-            initAspectRatio: CropAspectRatioPreset.square,
-            activeControlsWidgetColor: AppColors.primary,
-            // hideBottomControls: true,
-            lockAspectRatio: true),
-        iosUiSettings: IOSUiSettings(
-          title: 'Crop Profile Picture',
-        ));
-    if (croppedFile != null) {
-      File compressedFile = await FlutterNativeImage.compressImage(
-          croppedFile.path,
-          quality: 60,
-          percentage: 100);
-      List<int> imageBytes = File(compressedFile.path).readAsBytesSync();
-      _base64Images.add(base64Encode(imageBytes));
-      setState(() {
-        _image = File(compressedFile.path);
-      });
-      _profileBloc.add(UpdateProfileImage(_base64Images[0]));
-    }
   }
 }

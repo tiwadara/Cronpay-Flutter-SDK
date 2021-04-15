@@ -7,7 +7,6 @@ import 'package:cron_pay/src/auth/services/auth_service.dart';
 import 'package:cron_pay/src/commons/models/api_response.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -70,16 +69,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           yield RequestError(response);
         }
       }
-    } else if (event is LoginWithGoogleEvent) {
-      yield SigningIn();
-      var response = await authService.loginWithGoogle(event.user);
-      if (response != null) {
-        if (response is SuccessResponse) {
-          yield LoginSuccessful();
-        } else if (response is ErrorResponse) {
-          yield RequestError(response);
-        }
-      }
+    // } else if (event is LoginWithGoogleEvent) {
+    //   yield SigningIn();
+    //   var response = await authService.loginWithGoogle(event.user);
+    //   if (response != null) {
+    //     if (response is SuccessResponse) {
+    //       yield LoginSuccessful();
+    //     } else if (response is ErrorResponse) {
+    //       yield RequestError(response);
+    //     }
+    //   }
     }else if (event is SignUpEvent) {
       yield SigningUp();
       var response = await authService.signUp(event.user, event.otp);
@@ -90,16 +89,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           yield RequestError(response);
         }
       }
-    } else if (event is SignUpWithGoogleEvent) {
-      yield SigningUp();
-      var response = await authService.signUpWithGoogle(event.user);
-      if (response != null) {
-        if (response is SuccessResponse) {
-          yield SigUpWithGoogleSuccessful(event.user);
-        } else if (response is ErrorResponse) {
-          yield RequestError(response);
-        }
-      }
+    // }
+    // else if (event is SignUpWithGoogleEvent) {
+    //   yield SigningUp();
+    //   var response = await authService.signUpWithGoogle(event.user);
+    //   if (response != null) {
+    //     if (response is SuccessResponse) {
+    //       yield SigUpWithGoogleSuccessful(event.user);
+    //     } else if (response is ErrorResponse) {
+    //       yield RequestError(response);
+    //     }
+    //   }
     } else if (event is RequestOTP) {
       yield RequestingOTP();
       var response = await authService.requestOTP(event.user);

@@ -8,7 +8,6 @@ import 'package:cron_pay/src/commons/constants/storage_constants.dart';
 import 'package:cron_pay/src/commons/models/api_response.dart';
 import 'package:cron_pay/src/commons/models/bank.dart';
 import 'package:cron_pay/src/commons/services/api.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hive/hive.dart';
 
 class AuthService {
@@ -98,25 +97,25 @@ class AuthService {
     }
   }
 
-  Future<dynamic> loginWithGoogle(GoogleSignInAccount user) async {
-    var idToken = ( await user?.authentication)?.idToken ?? "";
-    final ApiRequestBuilder requestBuilder = ApiRequestBuilder(
-        NetworkConstants.GOOGLE_LOGIN, "POST",
-        body: {"idToken": idToken, "provider": "GOOGLE"});
-
-    final ApiResponse apiResponse =
-        await apiService.makeRequest(requestBuilder);
-
-    if (apiResponse.successResponse != null) {
-      var jsonData = apiResponse.successResponse.responseBody;
-      final tokenBox = await Hive.openBox(StorageConstants.TOKEN_BOX);
-      tokenBox.put("token", Token.fromJson(jsonData.data));
-      apiService.setHeaders(tokenBox.get("token"));
-      return apiResponse.successResponse;
-    } else {
-      return apiResponse.errorResponse;
-    }
-  }
+  // Future<dynamic> loginWithGoogle(GoogleSignInAccount user) async {
+  //   var idToken = ( await user?.authentication)?.idToken ?? "";
+  //   final ApiRequestBuilder requestBuilder = ApiRequestBuilder(
+  //       NetworkConstants.GOOGLE_LOGIN, "POST",
+  //       body: {"idToken": idToken, "provider": "GOOGLE"});
+  //
+  //   final ApiResponse apiResponse =
+  //       await apiService.makeRequest(requestBuilder);
+  //
+  //   if (apiResponse.successResponse != null) {
+  //     var jsonData = apiResponse.successResponse.responseBody;
+  //     final tokenBox = await Hive.openBox(StorageConstants.TOKEN_BOX);
+  //     tokenBox.put("token", Token.fromJson(jsonData.data));
+  //     apiService.setHeaders(tokenBox.get("token"));
+  //     return apiResponse.successResponse;
+  //   } else {
+  //     return apiResponse.errorResponse;
+  //   }
+  // }
 
   Future<void> logOut() async {
     final userBox = await Hive.openBox(StorageConstants.USER_BOX);
@@ -146,21 +145,21 @@ class AuthService {
     }
   }
 
-  Future<dynamic> signUpWithGoogle(GoogleSignInAccount user) async {
-    var idToken = ( await user?.authentication)?.idToken ?? "";
-    final ApiRequestBuilder requestBuilder = ApiRequestBuilder(
-        NetworkConstants.GOOGLE_SIGN_UP, "POST",
-        body: {"idToken": idToken, "provider": "GOOGLE"});
-
-    final ApiResponse apiResponse =
-        await apiService.makeRequest(requestBuilder);
-
-    if (apiResponse.successResponse != null) {
-      return apiResponse.successResponse;
-    } else {
-      return apiResponse.errorResponse;
-    }
-  }
+  // Future<dynamic> signUpWithGoogle(GoogleSignInAccount user) async {
+  //   var idToken = ( await user?.authentication)?.idToken ?? "";
+  //   final ApiRequestBuilder requestBuilder = ApiRequestBuilder(
+  //       NetworkConstants.GOOGLE_SIGN_UP, "POST",
+  //       body: {"idToken": idToken, "provider": "GOOGLE"});
+  //
+  //   final ApiResponse apiResponse =
+  //       await apiService.makeRequest(requestBuilder);
+  //
+  //   if (apiResponse.successResponse != null) {
+  //     return apiResponse.successResponse;
+  //   } else {
+  //     return apiResponse.errorResponse;
+  //   }
+  // }
 
   Future<dynamic> requestOTP(User user) async {
     final ApiRequestBuilder requestBuilder = ApiRequestBuilder(

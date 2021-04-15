@@ -19,12 +19,8 @@ Depends on all your plugins, and provides a function to register them.
   s.static_framework    = true
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
   s.dependency 'Flutter'
-  s.dependency 'flutter_local_notifications'
   s.dependency 'flutter_native_image'
   s.dependency 'fluttertoast'
-  s.dependency 'google_sign_in'
-  s.dependency 'image_cropper'
   s.dependency 'path_provider'
-  s.dependency 'sign_in_with_apple'
   s.dependency 'sqflite'
 end

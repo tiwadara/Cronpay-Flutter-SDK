@@ -104,14 +104,14 @@ class SigUpSuccessful extends AuthState {
   List<Object> get props => [];
 }
 
-@immutable
-class SigUpWithGoogleSuccessful extends AuthState {
-  final GoogleSignInAccount user;
-  SigUpWithGoogleSuccessful(this.user);
-
-  @override
-  List<Object> get props => [user];
-}
+// @immutable
+// class SigUpWithGoogleSuccessful extends AuthState {
+//   final GoogleSignInAccount user;
+//   SigUpWithGoogleSuccessful(this.user);
+//
+//   @override
+//   List<Object> get props => [user];
+// }
 
 @immutable
 class RequestError extends AuthState {

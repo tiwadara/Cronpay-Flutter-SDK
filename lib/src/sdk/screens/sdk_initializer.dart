@@ -76,7 +76,14 @@ class _SDKInitializerState extends State<SDKInitializer> {
                 AppColors.accentDark
               ])),
           child: Center(
-            child: SizedBox(width: 150.w, child: Image.asset(Assets.logo)),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(width: 150.w, child: Image.asset(Assets.logo)),
+                SizedBox(height: 20.h,),
+                Text("Initializing Mandate...", style: TextStyle(fontSize: 30, color: AppColors.white),)
+              ],
+            ),
           ),
         ),
       ),

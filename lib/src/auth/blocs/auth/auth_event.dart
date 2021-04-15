@@ -56,15 +56,15 @@ class SetNewPasswordEvent extends AuthEvent {
   List<Object> get props => [newPassword, otp];
 }
 
-@immutable
-class LoginWithGoogleEvent extends AuthEvent {
-  final GoogleSignInAccount user;
-
-  LoginWithGoogleEvent(this.user);
-
-  @override
-  List<Object> get props => [user];
-}
+// @immutable
+// class LoginWithGoogleEvent extends AuthEvent {
+//   final GoogleSignInAccount user;
+//
+//   LoginWithGoogleEvent(this.user);
+//
+//   @override
+//   List<Object> get props => [user];
+// }
 
 @immutable
 class SignUpEvent extends AuthEvent {
@@ -77,15 +77,15 @@ class SignUpEvent extends AuthEvent {
   List<Object> get props => [user, otp];
 }
 
-@immutable
-class SignUpWithGoogleEvent extends AuthEvent {
-  final GoogleSignInAccount user;
-
-  SignUpWithGoogleEvent(this.user);
-
-  @override
-  List<Object> get props => [user];
-}
+// @immutable
+// class SignUpWithGoogleEvent extends AuthEvent {
+//   final GoogleSignInAccount user;
+//
+//   SignUpWithGoogleEvent(this.user);
+//
+//   @override
+//   List<Object> get props => [user];
+// }
 
 @immutable
 class RequestOTP extends AuthEvent {

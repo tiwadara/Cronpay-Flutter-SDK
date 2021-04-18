@@ -5,6 +5,7 @@ import 'package:cron_pay/src/commons/models/bank.dart';
 import 'package:cron_pay/src/payment/models/bank_detail.dart';
 import 'package:cron_pay/src/payment/models/payment_method.dart';
 import 'package:cron_pay/src/payment/services/payment_service.dart';
+import 'package:cron_pay/src/sdk/model/mandate.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:meta/meta.dart';
@@ -33,8 +34,7 @@ class DirectDebitBloc
       }
     } else if (event is AddDirectDebit) {
       yield SendingReference();
-      var response = await paymentService.startDirectDebit(event.paymentMethod,
-          event.account, event.bank, event.maxAmount, event.signature);
+      var response = await paymentService.startDirectDebit(event.mandate);
       if (response is SuccessResponse) {
         String message = response.responseBody.message;
         yield MandateInitiated(message);

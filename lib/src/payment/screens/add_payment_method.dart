@@ -84,10 +84,10 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
                     tab = groupValue;
                   });
                 }),
-                if (tab == firstTabId)
-                  DirectDeposit()
-                else if (tab == secondTabId)
-                  CardPayment()
+                // if (tab == firstTabId)
+                //   // DirectDeposit()
+                // else if (tab == secondTabId)
+                //   CardPayment()
               ],
             ),
           ],

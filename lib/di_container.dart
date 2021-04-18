@@ -5,6 +5,7 @@ import 'package:cron_pay/src/events/services/event_service.dart';
 import 'package:cron_pay/src/payment/services/payment_service.dart';
 import 'package:cron_pay/src/profile/services/bank_service.dart';
 import 'package:cron_pay/src/profile/services/profile_service.dart';
+import 'package:cron_pay/src/sdk/services/sdk_service.dart';
 import 'package:cron_pay/src/transactions/services/transaction_service.dart';
 import 'package:dio/dio.dart';
 import 'package:kiwi/kiwi.dart';
@@ -25,6 +26,7 @@ abstract class Injector {
   @Register.singleton(PaymentService)
   @Register.singleton(ProfileService)
   @Register.singleton(TransactionService)
+  @Register.singleton(SdkService)
 
   void configure();
 }

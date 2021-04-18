@@ -20,5 +20,6 @@ class _$Injector extends Injector {
     container.registerSingleton((c) => PaymentService(c<APIService>()));
     container.registerSingleton((c) => ProfileService(c<APIService>()));
     container.registerSingleton((c) => TransactionService(c<APIService>()));
+    container.registerSingleton((c) => SdkService(c<APIService>()));
   }
 }

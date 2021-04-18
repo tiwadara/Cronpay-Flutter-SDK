@@ -1,25 +1,25 @@
 io.flutter.plugins.GeneratedPluginRegistrant
-com.cronpay.cronpay_module.R$attr
-com.cronpay.cronpay_module.R$styleable
-com.cronpay.cronpay_module.R$drawable
-com.cronpay.cronpay_module.R$integer
 com.cronpay.cronpay_module.R$layout: R$layout()
-com.cronpay.cronpay_module.R$dimen
-com.cronpay.cronpay_module.R$string
-com.cronpay.cronpay_module.R$style
+com.cronpay.cronpay_module.R$layout
+com.cronpay.cronpay_module.R$integer
+com.cronpay.cronpay_module.R$drawable: R$drawable()
+com.cronpay.cronpay_module.R$string: R$string()
+com.cronpay.cronpay_module.R$attr
+com.cronpay.cronpay_module.R$id
 io.flutter.plugins.GeneratedPluginRegistrant: GeneratedPluginRegistrant()
+com.cronpay.cronpay_module.R$styleable
+com.cronpay.cronpay_module.R$attr: R$attr()
+io.flutter.plugins.GeneratedPluginRegistrant: void registerWith(io.flutter.embedding.engine.FlutterEngine)
+com.cronpay.cronpay_module.R$style
+com.cronpay.cronpay_module.R$id: R$id()
+com.cronpay.cronpay_module.R$dimen
+com.cronpay.cronpay_module.R$color: R$color()
 com.cronpay.cronpay_module.R$integer: R$integer()
 com.cronpay.cronpay_module.R$style: R$style()
-io.flutter.plugins.GeneratedPluginRegistrant: void registerWith(io.flutter.embedding.engine.FlutterEngine)
-com.cronpay.cronpay_module.R$id
 com.cronpay.cronpay_module.R$styleable: R$styleable()
-com.cronpay.cronpay_module.R$drawable: R$drawable()
-com.cronpay.cronpay_module.R$attr: R$attr()
+com.cronpay.cronpay_module.R$string
 com.cronpay.cronpay_module.R$dimen: R$dimen()
-com.cronpay.cronpay_module.R$id: R$id()
-com.cronpay.cronpay_module.R$string: R$string()
-com.cronpay.cronpay_module.R$color
 com.cronpay.cronpay_module.R
-com.cronpay.cronpay_module.R$color: R$color()
-com.cronpay.cronpay_module.R$layout
 com.cronpay.cronpay_module.R: R()
+com.cronpay.cronpay_module.R$drawable
+com.cronpay.cronpay_module.R$color

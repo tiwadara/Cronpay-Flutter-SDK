@@ -29,8 +29,6 @@ class StepMandateCreated extends StatefulWidget {
 
 class _StepMandateCreatedState extends State<StepMandateCreated> {
   DirectDebitBloc _directDepositBloc;
-  BankBloc _bankBloc;
-  ProfileBloc _profileBloc;
   double totalAmount;
   String cardRef;
   bool saveCard = false;
@@ -39,11 +37,6 @@ class _StepMandateCreatedState extends State<StepMandateCreated> {
   @override
   void initState() {
     _directDepositBloc = BlocProvider.of<DirectDebitBloc>(context);
-    _profileBloc = BlocProvider.of<ProfileBloc>(context);
-    _bankBloc = BlocProvider.of<BankBloc>(context);
-    _profileBloc.add(GetUserProfile());
-    _directDepositBloc.add(GetPaymentMethod());
-    _bankBloc.add(GetBanksEvent());
     super.initState();
   }
 

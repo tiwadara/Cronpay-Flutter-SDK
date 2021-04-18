@@ -8,31 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:overlay_support/overlay_support.dart';
 
-class App extends StatefulWidget {
-  @override
-  _AppState createState() => _AppState();
-}
-
-class _AppState extends State<App> {
-  // AppUpdateInfo _updateInfo;
-
-  @override
-  void initState() {
-    // if (Platform.isAndroid) {
-    //   InAppUpdate.checkForUpdate().then((info) {
-    //     setState(() {
-    //       _updateInfo = info;
-    //     });
-    //     if (_updateInfo?.updateAvailable ?? false) {
-    //       InAppUpdate.performImmediateUpdate().then((_) {});
-    //     }
-    //   });
-    // } else if (Platform.isIOS) {
-    // }
-
-    super.initState();
-  }
-
+class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(

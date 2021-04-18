@@ -1,4 +1,5 @@
 import 'package:cron_pay/src/commons/models/api_response.dart';
+import 'package:cron_pay/src/sdk/model/mandate.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
@@ -20,8 +21,19 @@ class Initializing extends SDKState {
 
 @immutable
 class SDKInitialized extends SDKState {
+  final Mandate mandate;
+  SDKInitialized(this.mandate);
   @override
-  List<Object> get props => [];
+  List<Object> get props => [mandate];
+}
+
+@immutable
+class SDKMerchantTokenReceived extends SDKState {
+  final String token;
+  SDKMerchantTokenReceived(this.token);
+
+  @override
+  List<Object> get props => [token];
 }
 
 @immutable
@@ -31,4 +43,16 @@ class RequestError extends SDKState {
 
   @override
   List<Object> get props => [errorResponse];
+}
+
+@immutable
+class SendingCallBack extends SDKState {
+  @override
+  List<Object> get props => [];
+}
+
+@immutable
+class CallbackSent extends SDKState {
+  @override
+  List<Object> get props => [];
 }

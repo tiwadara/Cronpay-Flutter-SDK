@@ -7,15 +7,11 @@ abstract class DirectDepositEvent extends Equatable {
 
 @immutable
 class AddDirectDebit extends DirectDepositEvent {
-  final String bank;
-  final String account;
-  final double maxAmount;
-  final String signature;
-  final PaymentMethod paymentMethod;
+  final Mandate mandate;
 
-  AddDirectDebit(this.bank, this.account,this.maxAmount, this.signature, this.paymentMethod);
+  AddDirectDebit(this.mandate);
   @override
-  List<Object> get props => [bank,account,maxAmount, signature, paymentMethod];
+  List<Object> get props => [mandate];
 }
 
 @immutable

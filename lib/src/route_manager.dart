@@ -69,7 +69,7 @@ class RouteManager {
       case Routes.signaturePad:
         return MaterialPageRoute(builder: (_) => SignaturePad());
       case Routes.createMandate:
-        return MaterialPageRoute(builder: (_) => CreateMandate());
+        return MaterialPageRoute(builder: (_) => CreateMandate(arguments));
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

@@ -21,12 +21,6 @@ class _SignaturePadState extends State<SignaturePad> {
   );
 
   @override
-  void initState() {
-    super.initState();
-    _controller.addListener(() => print('Value changed'));
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: RotatedBox(
@@ -50,8 +44,7 @@ class _SignaturePadState extends State<SignaturePad> {
                     color: Colors.blue,
                     onPressed: () async {
                       if (_controller.isNotEmpty) {
-                        final Uint8List data = await _controller.toPngBytes();
-                        Navigator.of(context).pop(data);
+                        _controller.toPngBytes().then((Uint8List data) =>     Navigator.of(context).pop(data));
                       }
                     },
                   ),

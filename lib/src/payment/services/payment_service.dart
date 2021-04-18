@@ -4,6 +4,7 @@ import 'package:cron_pay/src/commons/constants/network_constants.dart';
 import 'package:cron_pay/src/commons/models/api_response.dart';
 import 'package:cron_pay/src/commons/services/api.dart';
 import 'package:cron_pay/src/payment/models/payment_method.dart';
+import 'package:cron_pay/src/sdk/model/mandate.dart';
 
 class PaymentService {
   APIService apiService;
@@ -42,16 +43,26 @@ class PaymentService {
   }
 
 
-  Future<dynamic> startDirectDebit(PaymentMethod paymentMethod,
-      String accountNumber, String bankId, double maxAmount, String signature) async {
+  Future<dynamic> startDirectDebit(Mandate mandate) async {
     final ApiRequestBuilder requestBuilder = ApiRequestBuilder(
-        NetworkConstants.PAYMENT_METHODS + "/${paymentMethod.id}", "POST",
+        NetworkConstants.MANDATES, "POST",
         body: {
-          "accountNumber": accountNumber,
-          "bankId": bankId,
-          "amount": maxAmount,
-          "signature" : signature
+          "accountNumber": mandate.accountNumber,
+          "bankId": mandate.bankId,
+          "amount": mandate.amount,
+          "signature" : mandate.signature,
+          "bvn": mandate.bvn,
+          "customerReference": mandate.customerReference,
+          "email": mandate.email,
+          "endDate": mandate.endDate,
+          "firstName": mandate.firstName,
+          "lastName": mandate.lastName,
+          "narration": mandate.narration,
+          "phone": mandate.phone,
+          "startDate": mandate.startDate
+
         });
+    log("***** ${requestBuilder.body}");
     final ApiResponse apiResponse = await apiService.makeRequest(requestBuilder);
 
     if (apiResponse.successResponse != null) {

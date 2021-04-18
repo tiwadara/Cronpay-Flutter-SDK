@@ -25,7 +25,6 @@ class StepBankDetails extends StatefulWidget {
 class _StepBankDetailsState extends State<StepBankDetails> {
   DirectDebitBloc _directDepositBloc;
   BankBloc _bankBloc;
-  ProfileBloc _profileBloc;
   double totalAmount;
   bool isButtonDisabled = true;
   bool isVerified = false;
@@ -35,7 +34,7 @@ class _StepBankDetailsState extends State<StepBankDetails> {
   var isSelected = [true, true];
   List<Bank> banks = [];
   AppDropDown2Item _selectedBank;
-  var _accountNumber;
+  String _accountNumber = "";
   String _accountName;
   double _maxAmount;
   List<AppDropDown2Item> _banksDropDownList = [];
@@ -48,10 +47,7 @@ class _StepBankDetailsState extends State<StepBankDetails> {
   @override
   void initState() {
     _directDepositBloc = BlocProvider.of<DirectDebitBloc>(context);
-    _profileBloc = BlocProvider.of<ProfileBloc>(context);
     _bankBloc = BlocProvider.of<BankBloc>(context);
-    _profileBloc.add(GetUserProfile());
-    _directDepositBloc.add(GetPaymentMethod());
     _bankBloc.add(GetBanksEvent());
     super.initState();
   }
@@ -94,6 +90,9 @@ class _StepBankDetailsState extends State<StepBankDetails> {
                             onSelect: (AppDropDown2Item value) {
                               _selectedBank = value;
                               watchFormState();
+                              if (_accountNumber?.length == 10) {
+                                verifyNuban();
+                              }
                             },
                             selected: _selectedBank,
                             items: _banksDropDownList,
@@ -108,7 +107,7 @@ class _StepBankDetailsState extends State<StepBankDetails> {
                   onChanged: (String text) {
                     _accountNumber = text;
                     watchFormState();
-                    if (text.length >= 9) {
+                    if (text.length == 10 && _selectedBank != null) {
                       verifyNuban();
                     }
                   },

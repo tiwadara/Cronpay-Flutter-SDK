@@ -15,6 +15,7 @@ import 'package:cron_pay/src/profile/blocs/bank/bank_bloc.dart';
 import 'package:cron_pay/src/profile/blocs/dashboard/dashboard_bloc.dart';
 import 'package:cron_pay/src/profile/blocs/profile/profile_bloc.dart';
 import 'package:cron_pay/src/sdk/blocs/splash/bloc.dart';
+import 'package:cron_pay/src/sdk/services/sdk_service.dart';
 import 'package:cron_pay/src/transactions/blocs/transaction/transaction_bloc.dart';
 import 'package:cron_pay/src/profile/services/bank_service.dart';
 import 'package:cron_pay/src/profile/services/profile_service.dart';
@@ -80,7 +81,7 @@ List<BlocProvider> blocProviders = [
   BlocProvider<SDKBloc>(
       lazy: false,
       create: (dynamic context) =>
-          SDKBloc(RepositoryProvider.of<AuthService>(context))),
+          SDKBloc(RepositoryProvider.of<SdkService>(context))),
 ];
 
 final KiwiContainer kiwiContainer = KiwiContainer();
@@ -112,5 +113,8 @@ List<RepositoryProvider> repositoryProviders = [
   ),
   RepositoryProvider<TransactionService>(
     create: (context) => kiwiContainer.resolve<TransactionService>(),
+  ),
+  RepositoryProvider<SdkService>(
+    create: (context) => kiwiContainer.resolve<SdkService>(),
   ),
 ];

@@ -1,16 +1,14 @@
 import 'package:cron_pay/src/commons/constants/app_constants.dart';
-import 'package:cron_pay/src/commons/constants/app_strings.dart';
 import 'package:cron_pay/src/commons/models/bank.dart';
-import 'package:cron_pay/src/commons/widgets/app_snackbar.dart';
 import 'package:cron_pay/src/commons/widgets/app_spinner.dart';
 import 'package:cron_pay/src/payment/blocs/directdebit/direct_debit_bloc.dart';
-import 'package:cron_pay/src/payment/blocs/payment/payment_bloc.dart';
 import 'package:cron_pay/src/payment/widgets/step_bank_details.dart';
 import 'package:cron_pay/src/payment/widgets/step_mandate_created.dart';
 import 'package:cron_pay/src/payment/widgets/step_sign_document.dart';
 import 'package:cron_pay/src/payment/widgets/timeline.dart';
 import 'package:cron_pay/src/profile/blocs/bank/bank_bloc.dart';
-import 'package:cron_pay/src/profile/blocs/profile/profile_bloc.dart';
+import 'package:cron_pay/src/sdk/blocs/splash/bloc.dart';
+import 'package:cron_pay/src/sdk/model/mandate.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,17 +16,16 @@ import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DirectDeposit extends StatefulWidget {
-  const DirectDeposit({Key key}) : super(key: key);
+  final Mandate mandate;
+  const DirectDeposit(this.mandate, {Key key}) : super(key: key);
 
   @override
   _DirectDepositState createState() => _DirectDepositState();
 }
 
 class _DirectDepositState extends State<DirectDeposit> {
-  DirectDebitBloc _directDepositBloc;
   BankBloc _bankBloc;
-  ProfileBloc _profileBloc;
-  PaymentBloc _paymentBloc;
+  SDKBloc _sdkBloc;
   double totalAmount;
   bool isButtonDisabled = true;
   bool isVerified = false;
@@ -53,12 +50,8 @@ class _DirectDepositState extends State<DirectDeposit> {
 
   @override
   void initState() {
-    _paymentBloc = BlocProvider.of<PaymentBloc>(context);
-    _directDepositBloc = BlocProvider.of<DirectDebitBloc>(context);
-    _profileBloc = BlocProvider.of<ProfileBloc>(context);
     _bankBloc = BlocProvider.of<BankBloc>(context);
-    _profileBloc.add(GetUserProfile());
-    _directDepositBloc.add(GetPaymentMethod());
+    _sdkBloc = BlocProvider.of<SDKBloc>(context);
     _bankBloc.add(GetBanksEvent());
     super.initState();
   }
@@ -93,9 +86,9 @@ class _DirectDepositState extends State<DirectDeposit> {
                 builder: (context, state) {
                   if (state is SigningState) {
                     _stage = stageTwo;
-                  } else  if (state is MandateInitiated) {
+                  } else if (state is MandateInitiated) {
                     _stage = stageThree;
-                  }else  if (state is Restarted) {
+                  } else if (state is Restarted) {
                     _stage = stageOne;
                   }
                   return Timeline(_stage);
@@ -110,16 +103,18 @@ class _DirectDepositState extends State<DirectDeposit> {
                     current is Restarted,
                 builder: (context, state) {
                   if (state is SigningState) {
+                    widget.mandate.accountNumber = state.accountNumber;
+                    widget.mandate.amount = state.maxAmount.toInt();
+                    widget.mandate.bankId = state.bank.id.toString();
                     return StepSignDocument(
-                      maxAmount: state.maxAmount,
-                      accountNumber: state.accountNumber,
+                      mandate: widget.mandate,
                       bank: state.bank,
                       accountName: state.name,
                     );
-                  }else if (state is MandateInitiated) {
+                  } else if (state is MandateInitiated) {
+                    _sdkBloc.add(SendSuccessCallBackToPlatform());
                     return StepMandateCreated();
-                  }else if (state is Restarted) {
-                    _paymentBloc.add(GetSavedPaymentMethods());
+                  } else if (state is Restarted) {
                     return StepBankDetails();
                   }
                   return StepBankDetails();

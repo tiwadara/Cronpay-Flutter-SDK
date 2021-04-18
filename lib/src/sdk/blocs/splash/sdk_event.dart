@@ -8,14 +8,29 @@ abstract class SDKEvent extends Equatable {
 }
 
 class InitializeSDK extends SDKEvent {
-  final User user;
+  final String accessToken;
 
-  InitializeSDK(this.user);
+  InitializeSDK(this.accessToken);
   @override
-  List<Object> get props => [user];
+  List<Object> get props => [accessToken];
+}
+
+class GetSdkMerchantToken extends SDKEvent {
+  @override
+  List<Object> get props => [];
 }
 
 class InitializationFailed extends SDKEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class SendSuccessCallBackToPlatform extends SDKEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class SendCloseCallBackToPlatform extends SDKEvent {
   @override
   List<Object> get props => [];
 }

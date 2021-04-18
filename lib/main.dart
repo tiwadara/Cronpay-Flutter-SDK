@@ -56,7 +56,7 @@ Dio getDioInstance() {
       contentType: 'application/json',
       connectTimeout: 30 * 1000,
       receiveTimeout: 15 * 1000,
-      baseUrl: NetworkConstants.BASE_URL);
+      baseUrl: NetworkConstants.MERCHANT_BASE_URL);
   final Dio _dio = Dio(_baseOptions);
   return _dio;
 }
